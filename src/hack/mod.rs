@@ -1,4 +1,3 @@
-use hook::prehook;
 use log::{info, warn};
 use std::{ptr::null_mut, time::Duration};
 use windows_sys::Win32::{
@@ -6,12 +5,15 @@ use windows_sys::Win32::{
     UI::{Input::KeyboardAndMouse::{GetAsyncKeyState, VK_DELETE}, WindowsAndMessaging::{UnhookWindowsHookEx, HHOOK}},
 };
 
+
+const HHK: isize = 0x29ca0c8;
+
 pub fn start() {
     let base = get_module_handle(null_mut());
     info!("[+] Base module: {:#x}", base);
 
     unsafe { 
-        let mouse_hook: *mut HHOOK = std::mem::transmute(base + 0x29ca0c8);
+        let mouse_hook: *mut HHOOK = std::mem::transmute(base + HHK);
         UnhookWindowsHookEx(*(mouse_hook));
         info!("[+] Unhooked mouse hook HHK @ {:?}", mouse_hook);
     }

@@ -13,10 +13,6 @@ type LPVOID = *mut core::ffi::c_void;
 
 mod hack;
 
-fn test() {
-    panic!("this should go backwards!");
-}
-
 unsafe extern "system" fn dll_main(_module: usize) -> u32 {
     let stream = TcpStream::connect("127.0.0.1:7331").unwrap();
 
