@@ -1,4 +1,5 @@
-# rust_dll_template
+# ostools
 
-Simple template for Rust dlls using `windows_sys`
-as opposed to `winapi`
+Work in progress
+
+usage: `cargo b; cargo r`
